@@ -1,0 +1,129 @@
+.aboutSection {
+  padding: 120px 0;
+  position: relative;
+  background: var(--color-bg);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.heading {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.story {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.text {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+.subheading {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.visualContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.glow {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+}
+
+.core {
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  z-index: 2;
+  background: var(--color-bg-secondary);
+  padding: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.node {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.node1 { top: 15%; left: 20%; animation: float 6s ease-in-out infinite; }
+.node2 { top: 30%; right: 10%; animation: float 7s ease-in-out infinite reverse; }
+.node3 { bottom: 20%; left: 15%; animation: float 5s ease-in-out infinite; }
+.node4 { bottom: 15%; right: 25%; animation: float 8s ease-in-out infinite reverse; }
+.node5 { top: 10%; right: 40%; animation: float 6.5s ease-in-out infinite; }
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .visual {
+    height: 400px;
+  }
+}
