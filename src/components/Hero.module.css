@@ -1,10 +1,11 @@
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 800px;
+  min-height: 700px;
   display: flex;
   align-items: center;
   overflow: hidden;
+  background: var(--color-bg);
 }
 
 .canvasContainer {
@@ -14,10 +15,19 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  pointer-events: none; /* Let mouse events pass through to content by default */
+  pointer-events: none;
 }
 
-/* Make sure the canvas itself is interactive for parallax if we want, but currently passing through */
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(13, 148, 136, 0.04) 0%, transparent 60%),
+    linear-gradient(to bottom, transparent 70%, var(--color-bg) 100%);
+  pointer-events: none;
+}
 
 .content {
   position: relative;
@@ -27,30 +37,55 @@
 }
 
 .eyebrow {
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 2px;
-  color: var(--color-accent);
+  letter-spacing: 3px;
+  color: var(--color-accent-light);
   margin-bottom: 2rem;
 }
 
+.eyebrowDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-accent-glow);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--color-accent-glow); }
+  50% { opacity: 0.6; box-shadow: 0 0 20px var(--color-accent-glow); }
+}
+
 .title {
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  line-height: 1.1;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  line-height: 1.15;
   margin-bottom: 1.5rem;
+  font-weight: 800;
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  line-height: 1.4;
 }
 
 .description {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--color-text-muted);
-  line-height: 1.6;
-  max-width: 650px;
-  margin-bottom: 3rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 2.5rem;
 }
 
 .ctas {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
@@ -58,38 +93,58 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2.5rem;
-  font-size: 0.9rem;
+  padding: 0.9rem 2.2rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  transition: var(--transition-fast);
-  border-radius: 4px;
+  transition: all var(--transition-medium);
+  border-radius: var(--radius-sm);
   position: relative;
   overflow: hidden;
 }
 
 .btnPrimary {
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-accent);
+  color: white;
+}
+
+.btnText {
+  position: relative;
+  z-index: 2;
+}
+
+.btnGlow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btnPrimary:hover .btnGlow {
+  opacity: 1;
 }
 
 .btnPrimary:hover {
-  background: var(--color-accent);
-  box-shadow: 0 0 20px var(--color-accent-glow);
+  box-shadow: 0 0 30px var(--color-accent-glow), 0 8px 25px rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
 }
 
 .btnSecondary {
   background: transparent;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-hover);
 }
 
 .btnSecondary:hover {
-  border-color: var(--color-text);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-accent);
+  color: var(--color-accent-light);
+  background: var(--color-accent-subtle);
+  transform: translateY(-2px);
 }
 
+/* Scroll Indicator */
 .scrollIndicator {
   position: absolute;
   bottom: 40px;
@@ -98,21 +153,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   z-index: 10;
 }
 
 .scrollText {
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  color: var(--color-text-muted);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--color-text-dim);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
 
 .scrollLine {
   width: 1px;
-  height: 60px;
+  height: 50px;
   background: var(--color-border);
   position: relative;
   overflow: hidden;
@@ -123,30 +178,42 @@
   top: 0;
   left: -1px;
   width: 3px;
-  height: 30px;
-  background: var(--color-accent);
+  height: 20px;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
   border-radius: 2px;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .hero {
     min-height: 100vh;
+    min-height: 100dvh;
   }
-  
+
+  .title {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+  }
+
+  .subtitle {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+  }
+
   .description {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-  
+
   .ctas {
     flex-direction: column;
     width: 100%;
   }
-  
+
   .btn {
     width: 100%;
+    padding: 1rem 2rem;
   }
 }
-@media (max-height: 850px) {
+
+@media (max-height: 750px) {
   .scrollIndicator {
     display: none;
   }

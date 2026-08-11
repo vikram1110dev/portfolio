@@ -9,7 +9,7 @@ export const portfolioData = {
     location: "Mayiladuthurai, Tamil Nadu",
     github: "https://github.com/vikram1110dev",
     linkedin: "https://www.linkedin.com/in/vikram-b-164834295",
-    resume: "/resume.pdf", // We'll place the provided resume here
+    resume: "/resume.pdf",
   },
   about: {
     story: [
@@ -19,6 +19,12 @@ export const portfolioData = {
       "My goal is to become a strong Software Developer who doesn't just write code, but builds real-world solutions."
     ]
   },
+  stats: [
+    { number: 6, suffix: "+", label: "Projects Built" },
+    { number: 5, suffix: "+", label: "Tech Domains" },
+    { number: 1, suffix: "", label: "Internship" },
+    { number: 4, suffix: "", label: "Years of Learning" },
+  ],
   skills: [
     {
       category: "Programming Languages",
@@ -71,10 +77,8 @@ export const portfolioData = {
       role: "Full Stack Developer",
       status: "In Development",
       technologies: ["Python", "FastAPI", "React", "Next.js"],
-      thumbnail: "/images/projects/placeholder-thumb.jpg",
-      heroImage: "/images/projects/placeholder-hero.jpg",
-      github: "#",
-      liveDemo: "#",
+      github: null,
+      liveDemo: null,
       problem: "Traditional programming tutorials can be dry and fail to maintain student engagement over long periods.",
       solution: "A story-based learning environment ('Kadhai' meaning story) that integrates Python coding challenges into a narrative progression.",
       features: [
@@ -93,10 +97,8 @@ export const portfolioData = {
       role: "Full Stack Developer",
       status: "In Development",
       technologies: ["Python", "FastAPI", "React", "MongoDB", "AI APIs"],
-      thumbnail: "/images/projects/placement-prep-ai-thumb.jpg",
-      heroImage: "/images/projects/placement-prep-ai-hero.jpg",
-      github: "#",
-      liveDemo: "#",
+      github: null,
+      liveDemo: null,
       problem: "Students often use multiple disconnected resources for aptitude practice, DSA preparation, interview preparation, and progress tracking.",
       solution: "A centralized, AI-driven platform that provides a structured learning experience, tracking performance and adapting to the user's skill level.",
       features: [
@@ -115,10 +117,8 @@ export const portfolioData = {
       role: "AI Developer",
       status: "Completed",
       technologies: ["Python", "YOLO", "CNN", "Computer Vision", "FastAPI"],
-      thumbnail: "/images/projects/wild-animal-thumb.jpg",
-      heroImage: "/images/projects/wild-animal-hero.jpg",
-      github: "#",
-      liveDemo: "#",
+      github: null,
+      liveDemo: null,
       problem: "Human-wildlife conflict is increasing, and manual monitoring of CCTV feeds is inefficient and error-prone.",
       solution: "An automated system using deep learning to instantly identify animals in video feeds and alert authorities, reducing false positives in varying conditions.",
       features: [
@@ -137,10 +137,8 @@ export const portfolioData = {
       role: "Full Stack Developer",
       status: "Completed",
       technologies: ["RAG", "LLM", "Google Maps API", "React", "Node.js"],
-      thumbnail: "/images/projects/civic-issue-thumb.jpg",
-      heroImage: "/images/projects/civic-issue-hero.jpg",
-      github: "#",
-      liveDemo: "#",
+      github: null,
+      liveDemo: null,
       problem: "Citizens struggle to report local issues effectively, and authorities lack a streamlined way to triage and manage them.",
       solution: "A map-integrated reporting system with an intelligent RAG chatbot that provides instant, context-aware responses regarding issue status.",
       features: [
@@ -159,10 +157,8 @@ export const portfolioData = {
       role: "Backend Developer",
       status: "Completed",
       technologies: ["C#", "ASP.NET MVC", "SQL Server"],
-      thumbnail: "/images/projects/food-donation-thumb.jpg",
-      heroImage: "/images/projects/food-donation-hero.jpg",
-      github: "#",
-      liveDemo: "#",
+      github: null,
+      liveDemo: null,
       problem: "Significant food waste occurs while NGOs struggle to find reliable surplus food sources.",
       solution: "A database-driven platform that securely matches donors with recipients and provides real-time visibility into donation status.",
       features: [
@@ -181,10 +177,8 @@ export const portfolioData = {
       role: "Full Stack Developer",
       status: "In Development",
       technologies: ["C#", "ASP.NET Core", "SQL Server", "HTML/CSS"],
-      thumbnail: "/images/projects/truck-logistics-thumb.jpg",
-      heroImage: "/images/projects/truck-logistics-hero.jpg",
-      github: "#",
-      liveDemo: "#",
+      github: null,
+      liveDemo: null,
       problem: "Manual tracking of fleet maintenance leads to vehicle breakdowns and inefficient routing.",
       solution: "A centralized dashboard that tracks maintenance schedules, logistics functionality, and fleet status.",
       features: [

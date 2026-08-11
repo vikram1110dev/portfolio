@@ -9,8 +9,19 @@ export default function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [hoverText, setHoverText] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check for mobile/touch devices
+    const checkMobile = () => {
+      setIsMobile(
+        window.matchMedia("(max-width: 768px)").matches ||
+          "ontouchstart" in window
+      );
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
@@ -41,6 +52,7 @@ export default function CustomCursor() {
 
     return () => {
       window.removeEventListener("mousemove", updateMousePosition);
+      window.removeEventListener("resize", checkMobile);
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseover", handleHoverStart);
@@ -48,9 +60,7 @@ export default function CustomCursor() {
     };
   }, [isVisible]);
 
-  if (typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches) {
-    return null; // Disable on mobile
-  }
+  if (isMobile) return null;
 
   const variants = {
     default: {
@@ -68,8 +78,10 @@ export default function CustomCursor() {
       height: 80,
       width: 80,
       opacity: isVisible ? 1 : 0,
-      backgroundColor: hoverText ? "var(--color-accent)" : "rgba(255, 255, 255, 0.1)",
-      border: hoverText ? "none" : "1px solid var(--color-border)",
+      backgroundColor: hoverText
+        ? "rgba(99, 102, 241, 0.9)"
+        : "rgba(255, 255, 255, 0.06)",
+      border: hoverText ? "none" : "1px solid rgba(255, 255, 255, 0.15)",
       mixBlendMode: hoverText ? "normal" : "difference",
     },
   };
