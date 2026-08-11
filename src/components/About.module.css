@@ -81,7 +81,7 @@
 .orbit {
   position: absolute;
   border-radius: 50%;
-  border: 1px dashed rgba(37, 99, 235, 0.12);
+  border: 1px dashed rgba(99, 102, 241, 0.15);
 }
 
 .orbit1 {
@@ -115,7 +115,7 @@
   background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
   border-radius: 50%;
   filter: blur(60px);
-  opacity: 0.12;
+  opacity: 0.15;
 }
 
 /* Core */
@@ -125,14 +125,14 @@
   align-items: center;
   gap: 0.15rem;
   z-index: 2;
-  background: var(--color-bg);
+  background: var(--color-bg-secondary);
   padding: 2rem;
   border-radius: 50%;
   width: 130px;
   height: 130px;
   justify-content: center;
   border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.1);
 }
 
 .coreTitle {
@@ -155,7 +155,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ffffff;
+  background: var(--color-bg-tertiary);
   border: 1px solid var(--color-border);
   padding: 0.5rem 1rem;
   border-radius: 20px;

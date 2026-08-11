@@ -40,10 +40,10 @@ function ParticleField() {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.04}
-        color="#2563eb"
+        size={0.03}
+        color="#6366f1"
         transparent
-        opacity={0.4}
+        opacity={0.6}
         sizeAttenuation
       />
     </points>
@@ -63,10 +63,10 @@ function AbstractNode(props) {
     <mesh ref={meshRef} {...props}>
       <icosahedronGeometry args={[1, 1]} />
       <meshStandardMaterial
-        color="#2563eb"
+        color="#6366f1"
         wireframe
         transparent
-        opacity={0.08}
+        opacity={0.15}
       />
     </mesh>
   );
@@ -87,9 +87,9 @@ export default function Hero() {
       {/* 3D Canvas Background */}
       <div className={styles.canvasContainer}>
         <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
-          <ambientLight intensity={0.7} />
-          <pointLight position={[10, 10, 10]} intensity={0.5} color="#2563eb" />
-          <pointLight position={[-10, -5, 5]} intensity={0.3} color="#0d9488" />
+          <ambientLight intensity={0.3} />
+          <pointLight position={[10, 10, 10]} intensity={0.5} color="#6366f1" />
+          <pointLight position={[-10, -5, 5]} intensity={0.3} color="#22d3ee" />
           <ParticleField />
           <AbstractNode position={[3, 1.5, -3]} scale={1.8} />
           <AbstractNode position={[-4, -1, -6]} scale={2.5} />

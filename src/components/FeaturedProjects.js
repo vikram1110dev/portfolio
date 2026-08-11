@@ -7,17 +7,17 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import styles from "./FeaturedProjects.module.css";
 import { portfolioData } from "@/data/config";
 
-// Unique gradient for each project based on its category (Light theme compatible)
+// Unique gradient for each project based on its category
 const projectGradients = {
-  "AI • Full Stack": ["#2563eb", "#3b82f6", "#60a5fa"],
-  "AI • Full Stack • Education": ["#4f46e5", "#6366f1", "#818cf8"],
-  "AI • Computer Vision": ["#0d9488", "#0f766e", "#14b8a6"],
-  ".NET • Web Application": ["#d97706", "#b45309", "#f59e0b"],
+  "AI • Full Stack": ["#6366f1", "#8b5cf6", "#a78bfa"],
+  "AI • Full Stack • Education": ["#3b82f6", "#6366f1", "#818cf8"],
+  "AI • Computer Vision": ["#10b981", "#059669", "#34d399"],
+  ".NET • Web Application": ["#f59e0b", "#d97706", "#fbbf24"],
 };
 
 function getGradient(category) {
-  const colors = projectGradients[category] || ["#2563eb", "#3b82f6", "#60a5fa"];
-  return `linear-gradient(135deg, ${colors[0]}08 0%, ${colors[1]}15 50%, ${colors[2]}05 100%)`;
+  const colors = projectGradients[category] || ["#6366f1", "#818cf8", "#a78bfa"];
+  return `linear-gradient(135deg, ${colors[0]}15 0%, ${colors[1]}25 50%, ${colors[2]}10 100%)`;
 }
 
 function getAccentColor(category) {
@@ -114,9 +114,8 @@ export default function FeaturedProjects() {
                 <div
                   className={styles.categoryIcon}
                   style={{
-                    borderColor: getAccentColor(project.category) + "30",
+                    borderColor: getAccentColor(project.category) + "40",
                     color: getAccentColor(project.category),
-                    background: "#ffffff",
                   }}
                 >
                   {project.category.includes("Computer Vision") ? (
