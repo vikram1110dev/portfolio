@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Introduction from "@/components/Introduction";
+import Stats from "@/components/Stats";
 import TechStack from "@/components/TechStack";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import About from "@/components/About";
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Introduction />
+      <Stats />
       <TechStack />
       <FeaturedProjects />
       <About />
