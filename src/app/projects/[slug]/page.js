@@ -17,8 +17,9 @@ export function generateStaticParams() {
   }));
 }
 
-export default function ProjectPage({ params }) {
-  const project = portfolioData.projects.find((p) => p.slug === params.slug);
+export default async function ProjectPage({ params }) {
+  const { slug } = await params;
+  const project = portfolioData.projects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
@@ -30,17 +31,26 @@ export default function ProjectPage({ params }) {
         <div className={styles.heroBackground}>
           <div className={styles.overlay} />
         </div>
-        
+
         <div className={`container ${styles.heroContent}`}>
-          <Link href="/#work" className={`${styles.backBtn} interactive`} data-hover-text="BACK">
+          <Link
+            href="/#work"
+            className={`${styles.backBtn} interactive`}
+            data-hover-text="BACK"
+          >
             <ArrowLeft size={16} /> BACK TO PROJECTS
           </Link>
-          
+
           <div className={styles.meta}>
             <span className={styles.category}>{project.category}</span>
             <span className={styles.year}>{project.year}</span>
+            <span
+              className={`${styles.status} ${project.status === "Completed" ? styles.statusCompleted : styles.statusInDev}`}
+            >
+              {project.status}
+            </span>
           </div>
-          
+
           <h1 className={styles.title}>{project.title}</h1>
           <p className={styles.description}>{project.description}</p>
         </div>
@@ -60,20 +70,39 @@ export default function ProjectPage({ params }) {
             <h3>TECHNOLOGIES</h3>
             <div className={styles.tags}>
               {project.technologies.map((tech, i) => (
-                <span key={i} className={styles.tag}>{tech}</span>
+                <span key={i} className={styles.tag}>
+                  {tech}
+                </span>
               ))}
             </div>
           </div>
           <div className={styles.links}>
-            {project.github !== "#" && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className={`${styles.linkBtn} interactive`} data-hover-text="CODE">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.linkBtn} interactive`}
+                data-hover-text="CODE"
+              >
                 <GithubIcon size={18} /> VIEW SOURCE
               </a>
             )}
-            {project.liveDemo !== "#" && (
-              <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className={`${styles.linkBtn} interactive`} data-hover-text="LIVE">
+            {project.liveDemo && (
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.linkBtn} interactive`}
+                data-hover-text="LIVE"
+              >
                 <ExternalLink size={18} /> LIVE DEMO
               </a>
+            )}
+            {!project.github && !project.liveDemo && (
+              <p className={styles.noLinks}>
+                Source code and demo links coming soon.
+              </p>
             )}
           </div>
         </div>
@@ -94,6 +123,9 @@ export default function ProjectPage({ params }) {
             <div className={styles.featuresList}>
               {project.features.map((feature, i) => (
                 <div key={i} className={styles.featureItem}>
+                  <div className={styles.featureNumber}>
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
                   <h3>{feature.name}</h3>
                   <p>{feature.description}</p>
                 </div>
@@ -102,9 +134,9 @@ export default function ProjectPage({ params }) {
           </section>
 
           <section className={styles.contentSection}>
-            <h2>UNDER THE HOOD</h2>
+            <h2>ARCHITECTURE</h2>
             <div className={styles.architectureBox}>
-              {project.architecture.split(' → ').map((node, index, arr) => (
+              {project.architecture.split(" → ").map((node, index, arr) => (
                 <span key={index} className={styles.archNode}>
                   {node}
                   {index < arr.length - 1 && <ArrowRightIcon />}
@@ -120,7 +152,17 @@ export default function ProjectPage({ params }) {
 
 function ArrowRightIcon() {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ margin: '0 10px', color: 'var(--color-text-muted)' }}>
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ margin: "0 10px", color: "var(--color-text-dim)" }}
+    >
       <line x1="5" y1="12" x2="19" y2="12"></line>
       <polyline points="12 5 19 12 12 19"></polyline>
     </svg>

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight } from "lucide-react";
 import styles from "./Contact.module.css";
 import { portfolioData } from "@/data/config";
 
@@ -23,9 +23,13 @@ const LinkedinIcon = ({ size = 24 }) => (
 export default function Contact() {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px 0px" });
-  
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
-  const [formStatus, setFormStatus] = useState("idle");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,17 +37,16 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormStatus("submitting");
-    // Simulate API call
-    setTimeout(() => {
-      setFormStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setFormStatus("idle"), 3000);
-    }, 1500);
+    // Opens the user's email client with pre-filled content
+    const mailtoLink = `mailto:${portfolioData.personal.email}?subject=${encodeURIComponent(formData.subject || "Portfolio Contact")}&body=${encodeURIComponent(
+      `Hi Vikram,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    )}`;
+    window.open(mailtoLink, "_self");
   };
 
   return (
     <section id="contact" className={styles.contactSection} ref={containerRef}>
+      <div className={styles.bgGlow} />
       <div className={`container ${styles.container}`}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -51,9 +54,13 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className={styles.header}
         >
-          <h2 className={styles.heading}>LET&apos;S BUILD SOMETHING.</h2>
+          <span className="section-label">GET IN TOUCH</span>
+          <h2 className={styles.heading}>
+            Let&apos;s Build <span className="text-gradient">Something.</span>
+          </h2>
           <p className={styles.subheading}>
-            I&apos;m open to software development opportunities, interesting projects, collaborations, and technical challenges.
+            I&apos;m open to software development opportunities, interesting
+            projects, collaborations, and technical challenges.
           </p>
         </motion.div>
 
@@ -64,22 +71,54 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className={styles.contactInfo}
           >
-            <div className={styles.infoGroup}>
-              <h3>EMAIL</h3>
-              <a href={`mailto:${portfolioData.personal.email}`} className={`interactive`} data-hover-text="EMAIL">
-                {portfolioData.personal.email}
-              </a>
+            <div className={styles.infoCard}>
+              <div className={styles.infoIcon}>
+                <Mail size={20} />
+              </div>
+              <div>
+                <h3>EMAIL</h3>
+                <a
+                  href={`mailto:${portfolioData.personal.email}`}
+                  className="interactive"
+                  data-hover-text="EMAIL"
+                >
+                  {portfolioData.personal.email}
+                </a>
+              </div>
             </div>
-            
+
+            <div className={styles.infoCard}>
+              <div className={styles.infoIcon}>
+                <MapPin size={20} />
+              </div>
+              <div>
+                <h3>LOCATION</h3>
+                <p>{portfolioData.personal.location}</p>
+              </div>
+            </div>
+
             <div className={styles.socials}>
-              <a href={portfolioData.personal.github} target="_blank" rel="noopener noreferrer" className="interactive" data-hover-text="GITHUB">
-                <GithubIcon size={24} />
+              <a
+                href={portfolioData.personal.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.socialLink} interactive`}
+                data-hover-text="GITHUB"
+              >
+                <GithubIcon size={20} />
+                <span>GitHub</span>
+                <ArrowUpRight size={14} className={styles.socialArrow} />
               </a>
-              <a href={portfolioData.personal.linkedin} target="_blank" rel="noopener noreferrer" className="interactive" data-hover-text="LINKEDIN">
-                <LinkedinIcon size={24} />
-              </a>
-              <a href={`mailto:${portfolioData.personal.email}`} className="interactive" data-hover-text="EMAIL">
-                <Mail size={24} />
+              <a
+                href={portfolioData.personal.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.socialLink} interactive`}
+                data-hover-text="LINKEDIN"
+              >
+                <LinkedinIcon size={20} />
+                <span>LinkedIn</span>
+                <ArrowUpRight size={14} className={styles.socialArrow} />
               </a>
             </div>
           </motion.div>
@@ -91,26 +130,67 @@ export default function Contact() {
             className={styles.form}
             onSubmit={handleSubmit}
           >
-            <div className={styles.formGroup}>
-              <input type="text" name="name" placeholder="Name" required value={formData.name} onChange={handleChange} className="interactive" data-hover-text="TYPE" />
+            <p className={styles.formNote}>
+              This form opens your email client with pre-filled content.
+            </p>
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="interactive"
+                  data-hover-text="TYPE"
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="interactive"
+                  data-hover-text="TYPE"
+                />
+              </div>
             </div>
             <div className={styles.formGroup}>
-              <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} className="interactive" data-hover-text="TYPE" />
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                required
+                value={formData.subject}
+                onChange={handleChange}
+                className="interactive"
+                data-hover-text="TYPE"
+              />
             </div>
             <div className={styles.formGroup}>
-              <input type="text" name="subject" placeholder="Subject" required value={formData.subject} onChange={handleChange} className="interactive" data-hover-text="TYPE" />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                rows="5"
+                required
+                value={formData.message}
+                onChange={handleChange}
+                className="interactive"
+                data-hover-text="TYPE"
+              ></textarea>
             </div>
-            <div className={styles.formGroup}>
-              <textarea name="message" placeholder="Message" rows="5" required value={formData.message} onChange={handleChange} className="interactive" data-hover-text="TYPE"></textarea>
-            </div>
-            
-            <button 
-              type="submit" 
-              className={`${styles.submitBtn} interactive`} 
-              disabled={formStatus === "submitting"}
-              data-hover-text={formStatus === "submitting" ? "SENDING" : "SEND"}
+
+            <button
+              type="submit"
+              className={`${styles.submitBtn} interactive`}
+              data-hover-text="SEND"
             >
-              {formStatus === "submitting" ? "SENDING..." : formStatus === "success" ? "MESSAGE SENT" : "SEND MESSAGE"}
+              <span>SEND MESSAGE</span>
+              <ArrowUpRight size={16} />
             </button>
           </motion.form>
         </div>
