@@ -72,7 +72,7 @@ export const portfolioData = {
       description: "An interactive, story-driven platform designed to teach Python programming through engaging narratives and practical examples.",
       role: "Full Stack Developer",
       status: "In Development",
-      technologies: ["Python", "FastAPI", "React", "Next.js"],
+      technologies: ["Python", "FastAPI", "Next.js"],
       github: null,
       liveDemo: null,
       problem: "Traditional programming tutorials can be dry and fail to maintain student engagement over long periods.",
@@ -82,7 +82,7 @@ export const portfolioData = {
         { name: "Code Execution", description: "Run and test Python code directly in the browser." },
         { name: "Progress Tracking", description: "Save your place in the story and track your learning journey." }
       ],
-      architecture: "React Frontend → FastAPI Backend → Python Execution Engine"
+      architecture: "Frontend → FastAPI Backend → Python Execution Engine"
     },
     {
       title: "PlacementPrep AI",
@@ -92,7 +92,7 @@ export const portfolioData = {
       description: "An AI-powered placement preparation platform designed to help students practice aptitude, DSA, interviews, and technical skills.",
       role: "Full Stack Developer",
       status: "In Development",
-      technologies: ["Python", "FastAPI", "React", "MongoDB", "AI APIs"],
+      technologies: ["Python", "FastAPI", "AI APIs"],
       github: null,
       liveDemo: null,
       problem: "Students often use multiple disconnected resources for aptitude practice, DSA preparation, interview preparation, and progress tracking.",
@@ -102,7 +102,7 @@ export const portfolioData = {
         { name: "Aptitude Practice", description: "Question-based practice with categories and difficulty levels." },
         { name: "Progress Tracking", description: "Track user performance and learning progress." }
       ],
-      architecture: "React Frontend → FastAPI Backend → AI Service → MongoDB"
+      architecture: "Frontend → FastAPI Backend → AI Service → Database"
     },
     {
       title: "Adaptive Wild Animal Detection System",
@@ -132,7 +132,7 @@ export const portfolioData = {
       description: "A smart platform enabling citizens to report problems with real-time Google Maps location tagging and an AI chatbot.",
       role: "Full Stack Developer",
       status: "Completed",
-      technologies: ["RAG", "LLM", "Google Maps API", "React", "Node.js"],
+      technologies: ["RAG", "LLM", "Google Maps API"],
       github: null,
       liveDemo: null,
       problem: "Citizens struggle to report local issues effectively, and authorities lack a streamlined way to triage and manage them.",
@@ -142,7 +142,7 @@ export const portfolioData = {
         { name: "RAG Chatbot", description: "Users can query issue status naturally." },
         { name: "Priority Management", description: "Automated triaging of reported civic issues." }
       ],
-      architecture: "User Interface → Node.js API → RAG Service & Google Maps → Database"
+      architecture: "User Interface → Backend API → RAG Service & Google Maps → Database"
     },
     {
       title: "Food Donation Management System",
