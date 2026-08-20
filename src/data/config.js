@@ -14,8 +14,8 @@ export const portfolioData = {
   about: {
     story: [
       "I am a B.Tech Information Technology student at M.I.E.T. Engineering College with a strong foundation in full-stack development, mobile applications, and AI/ML.",
-      "I build practical applications using technologies like Java, C#, Python, React, and Android. My projects range from AI-powered detection systems to civic issue reporting platforms.",
-      "Currently, I am exploring advanced React, Next.js, AI Engineering, and modern system design to build production-quality software.",
+      "I build practical applications using technologies like Java, C#, Python, and Android. My projects range from AI-powered detection systems to civic issue reporting platforms.",
+      "Currently, I am exploring AI Engineering and modern system design to build production-quality software.",
       "My goal is to become a strong Software Developer who doesn't just write code, but builds real-world solutions."
     ]
   },
@@ -32,15 +32,13 @@ export const portfolioData = {
         { name: "Java", description: "Used for Android development and object-oriented programming." },
         { name: "Python", description: "Used for AI/ML experiments, backend APIs, and computer vision." },
         { name: "C#", description: "Used for .NET backend development and desktop applications." },
-        { name: "JavaScript / TypeScript", description: "Used for modern web frontend development." }
+        { name: "JavaScript", description: "Used for modern web frontend development." }
       ]
     },
     {
       category: "Web & Backend",
       items: [
-        { name: "React & Next.js", description: "Building interactive, performant web interfaces." },
         { name: "ASP.NET MVC & Core", description: "Building robust enterprise backends." },
-        { name: "Node.js & Express", description: "Creating REST APIs and microservices." },
         { name: "FastAPI", description: "High performance Python APIs for AI integrations." }
       ]
     },
@@ -48,7 +46,6 @@ export const portfolioData = {
       category: "Databases",
       items: [
         { name: "SQL Server", description: "Relational database management for .NET apps." },
-        { name: "MongoDB", description: "NoSQL database for flexible data storage." },
         { name: "MySQL", description: "Relational database for general web applications." }
       ]
     },
@@ -56,8 +53,7 @@ export const portfolioData = {
       category: "AI & ML",
       items: [
         { name: "Computer Vision (YOLO/CNN)", description: "Real-time object detection and classification." },
-        { name: "RAG & LLMs", description: "Retrieval-Augmented Generation for smart chatbots." },
-        { name: "Machine Learning", description: "Data processing and predictive modeling." }
+        { name: "RAG & LLMs", description: "Retrieval-Augmented Generation for smart chatbots." }
       ]
     },
     {
